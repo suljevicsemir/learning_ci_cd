@@ -4,6 +4,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:learn_bitrise/counter.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,20 +13,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  int counter = 0;
-
-  void incrementCounter() {
-    setState(() {
-      counter++;
-    });
-  }
-
-  void decrementCounter() {
-    setState(() {
-      counter--;
-    });
-  }
-
+  Counter counter = Counter();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +26,7 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Value of the counter is:'),
-              Text(counter.toString())
+              Text(counter.counter.toString())
             ],
           ),
         ),
@@ -47,11 +35,19 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () => incrementCounter(),
+            onPressed: () {
+              setState(() {
+                counter.increment();
+              });
+            },
             child: Icon(Icons.add),
           ),
           FloatingActionButton(
-            onPressed: () => decrementCounter(),
+            onPressed: ()  {
+              setState(() {
+                counter.decrement();
+              });
+            },
             child: Icon(Icons.remove),
           )
         ],
